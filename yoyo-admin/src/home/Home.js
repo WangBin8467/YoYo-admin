@@ -1,8 +1,6 @@
 // 首页
-import axios from 'axios';
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
+import React, { Component } from 'react';
+import adminApi from '../api/api.js';
 
 export default class Home extends Component{
 
@@ -11,11 +9,13 @@ export default class Home extends Component{
   }
 
   getData(){
-     var that=this;
-     axios.post('/api/news/getNewsList',{...that.filterForm}).then(res=>{
-       console.clear();
-       console.log(res.data.result);
+     let that=this;
+     adminApi.getNewsList({...that.filterForm}).then(res=>{
+       console.log(res);
      })
+     // return axios.post('/api/news/getNewsList',{...that.filterForm}).then(res=>{
+     //
+     // })
   }
 
   constructor(props) {
